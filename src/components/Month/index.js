@@ -14,6 +14,7 @@ import {
   isWeekend,
   isWithinInterval,
   eachDayOfInterval,
+  isSameMonth,
 } from 'date-fns';
 import { getMonthDisplayRange } from '../../utils';
 
@@ -36,6 +37,7 @@ function renderWeekdays(styles, dateOptions, weekdayDisplayFormat) {
 class Month extends PureComponent {
   render() {
     const now = new Date();
+    const isThisMonth = isSameMonth(this.props.month, now);
     const { displayMode, focusedRange, drag, styles, disabledDates, disabledDay } = this.props;
     const minDate = this.props.minDate && startOfDay(this.props.minDate);
     const maxDate = this.props.maxDate && endOfDay(this.props.maxDate);
@@ -58,7 +60,9 @@ class Month extends PureComponent {
     }
     const showPreview = this.props.showPreview && !drag.disablePreview;
     return (
-      <div className={styles.month} style={this.props.style}>
+      <div
+        className={(isThisMonth ? 'qa-dateActualMonth ' : 'qa-dateComingMonth ') + styles.month}
+        style={this.props.style}>
         {this.props.showMonthName ? (
           <div className={styles.monthName}>
             {format(this.props.month, this.props.monthDisplayFormat, this.props.dateOptions)}

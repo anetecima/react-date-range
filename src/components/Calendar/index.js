@@ -177,8 +177,8 @@ class Calendar extends PureComponent {
   };
   renderMonthAndYear = (focusedDate, changeShownDate, props) => {
     const { showMonthArrow, minDate, maxDate, showMonthAndYearPickers } = props;
-    const upperYearLimit = (maxDate || Calendar.defaultProps.maxDate).getFullYear();
-    const lowerYearLimit = (minDate || Calendar.defaultProps.minDate).getFullYear();
+    // const upperYearLimit = (maxDate || Calendar.defaultProps.maxDate).getFullYear();
+    // const lowerYearLimit = (minDate || Calendar.defaultProps.minDate).getFullYear();
     const styles = this.styles;
     return (
       <div onMouseUp={e => e.stopPropagation()} className={styles.monthAndYearWrapper}>
@@ -192,34 +192,34 @@ class Calendar extends PureComponent {
         ) : null}
         {showMonthAndYearPickers ? (
           <span className={styles.monthAndYearPickers}>
-            <span className={styles.monthPicker}>
-              <select
-                value={focusedDate.getMonth()}
-                onChange={e => changeShownDate(e.target.value, 'setMonth')}>
-                {this.state.monthNames.map((monthName, i) => (
-                  <option key={i} value={i}>
-                    {monthName}
-                  </option>
-                ))}
-              </select>
-            </span>
-            <span className={styles.monthAndYearDivider} />
-            <span className={styles.yearPicker}>
-              <select
-                value={focusedDate.getFullYear()}
-                onChange={e => changeShownDate(e.target.value, 'setYear')}>
-                {new Array(upperYearLimit - lowerYearLimit + 1)
-                  .fill(upperYearLimit)
-                  .map((val, i) => {
-                    const year = val - i;
-                    return (
-                      <option key={year} value={year}>
-                        {year}
-                      </option>
-                    );
-                  })}
-              </select>
-            </span>
+            {/*<span className={styles.monthPicker}>*/}
+            {/*  <select*/}
+            {/*    value={focusedDate.getMonth()}*/}
+            {/*    onChange={e => changeShownDate(e.target.value, 'setMonth')}>*/}
+            {/*    {this.state.monthNames.map((monthName, i) => (*/}
+            {/*      <option key={i} value={i}>*/}
+            {/*        {monthName}*/}
+            {/*      </option>*/}
+            {/*    ))}*/}
+            {/*  </select>*/}
+            {/*</span>*/}
+            {/*<span className={styles.monthAndYearDivider} />*/}
+            {/*<span className={styles.yearPicker}>*/}
+            {/*  <select*/}
+            {/*    value={focusedDate.getFullYear()}*/}
+            {/*    onChange={e => changeShownDate(e.target.value, 'setYear')}>*/}
+            {/*    {new Array(upperYearLimit - lowerYearLimit + 1)*/}
+            {/*      .fill(upperYearLimit)*/}
+            {/*      .map((val, i) => {*/}
+            {/*        const year = val - i;*/}
+            {/*        return (*/}
+            {/*          <option key={year} value={year}>*/}
+            {/*            {year}*/}
+            {/*          </option>*/}
+            {/*        );*/}
+            {/*      })}*/}
+            {/*  </select>*/}
+            {/*</span>*/}
           </span>
         ) : (
           <span className={styles.monthAndYearPickers}>

@@ -208,9 +208,9 @@ var Calendar = /*#__PURE__*/function (_PureComponent) {
       var showMonthArrow = props.showMonthArrow,
           minDate = props.minDate,
           maxDate = props.maxDate,
-          showMonthAndYearPickers = props.showMonthAndYearPickers;
-      var upperYearLimit = (maxDate || Calendar.defaultProps.maxDate).getFullYear();
-      var lowerYearLimit = (minDate || Calendar.defaultProps.minDate).getFullYear();
+          showMonthAndYearPickers = props.showMonthAndYearPickers; // const upperYearLimit = (maxDate || Calendar.defaultProps.maxDate).getFullYear();
+      // const lowerYearLimit = (minDate || Calendar.defaultProps.minDate).getFullYear();
+
       var styles = _this.styles;
       return /*#__PURE__*/_react["default"].createElement("div", {
         onMouseUp: function onMouseUp(e) {
@@ -225,34 +225,7 @@ var Calendar = /*#__PURE__*/function (_PureComponent) {
         }
       }, /*#__PURE__*/_react["default"].createElement("i", null)) : null, showMonthAndYearPickers ? /*#__PURE__*/_react["default"].createElement("span", {
         className: styles.monthAndYearPickers
-      }, /*#__PURE__*/_react["default"].createElement("span", {
-        className: styles.monthPicker
-      }, /*#__PURE__*/_react["default"].createElement("select", {
-        value: focusedDate.getMonth(),
-        onChange: function onChange(e) {
-          return changeShownDate(e.target.value, 'setMonth');
-        }
-      }, _this.state.monthNames.map(function (monthName, i) {
-        return /*#__PURE__*/_react["default"].createElement("option", {
-          key: i,
-          value: i
-        }, monthName);
-      }))), /*#__PURE__*/_react["default"].createElement("span", {
-        className: styles.monthAndYearDivider
-      }), /*#__PURE__*/_react["default"].createElement("span", {
-        className: styles.yearPicker
-      }, /*#__PURE__*/_react["default"].createElement("select", {
-        value: focusedDate.getFullYear(),
-        onChange: function onChange(e) {
-          return changeShownDate(e.target.value, 'setYear');
-        }
-      }, new Array(upperYearLimit - lowerYearLimit + 1).fill(upperYearLimit).map(function (val, i) {
-        var year = val - i;
-        return /*#__PURE__*/_react["default"].createElement("option", {
-          key: year,
-          value: year
-        }, year);
-      })))) : /*#__PURE__*/_react["default"].createElement("span", {
+      }) : /*#__PURE__*/_react["default"].createElement("span", {
         className: styles.monthAndYearPickers
       }, _this.state.monthNames[focusedDate.getMonth()], " ", focusedDate.getFullYear()), showMonthArrow ? /*#__PURE__*/_react["default"].createElement("button", {
         type: "button",

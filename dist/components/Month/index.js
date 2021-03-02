@@ -83,6 +83,7 @@ var Month = /*#__PURE__*/function (_PureComponent) {
       var _this = this;
 
       var now = new Date();
+      var isThisMonth = (0, _dateFns.isSameMonth)(this.props.month, now);
       var _this$props = this.props,
           displayMode = _this$props.displayMode,
           focusedRange = _this$props.focusedRange,
@@ -110,7 +111,7 @@ var Month = /*#__PURE__*/function (_PureComponent) {
 
       var showPreview = this.props.showPreview && !drag.disablePreview;
       return /*#__PURE__*/_react["default"].createElement("div", {
-        className: styles.month,
+        className: (isThisMonth ? 'qa-dateActualMonth ' : 'qa-dateComingMonth ') + styles.month,
         style: this.props.style
       }, this.props.showMonthName ? /*#__PURE__*/_react["default"].createElement("div", {
         className: styles.monthName
