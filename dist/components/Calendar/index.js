@@ -15,11 +15,9 @@ var _DayCell = require("../DayCell");
 
 var _Month = _interopRequireDefault(require("../Month"));
 
-var _DateInput = _interopRequireDefault(require("../DateInput"));
-
 var _utils = require("../../utils");
 
-var _classnames3 = _interopRequireDefault(require("classnames"));
+var _classnames = _interopRequireDefault(require("classnames"));
 
 var _reactList = _interopRequireDefault(require("react-list"));
 
@@ -205,10 +203,8 @@ var Calendar = /*#__PURE__*/function (_PureComponent) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "renderMonthAndYear", function (focusedDate, changeShownDate, props) {
-      var showMonthArrow = props.showMonthArrow,
-          minDate = props.minDate,
-          maxDate = props.maxDate,
-          showMonthAndYearPickers = props.showMonthAndYearPickers; // const upperYearLimit = (maxDate || Calendar.defaultProps.maxDate).getFullYear();
+      var showMonthArrow = props.showMonthArrow; // const { showMonthArrow, minDate, maxDate, showMonthAndYearPickers } = props;
+      // const upperYearLimit = (maxDate || Calendar.defaultProps.maxDate).getFullYear();
       // const lowerYearLimit = (minDate || Calendar.defaultProps.minDate).getFullYear();
 
       var styles = _this.styles;
@@ -219,77 +215,25 @@ var Calendar = /*#__PURE__*/function (_PureComponent) {
         className: styles.monthAndYearWrapper
       }, showMonthArrow ? /*#__PURE__*/_react["default"].createElement("button", {
         type: "button",
-        className: (0, _classnames3["default"])(styles.nextPrevButton, styles.prevButton),
+        className: (0, _classnames["default"])(styles.nextPrevButton, styles.prevButton),
         onClick: function onClick() {
           return changeShownDate(-1, 'monthOffset');
         }
-      }, /*#__PURE__*/_react["default"].createElement("i", null)) : null, showMonthAndYearPickers ? /*#__PURE__*/_react["default"].createElement("span", {
-        className: styles.monthAndYearPickers
-      }) : /*#__PURE__*/_react["default"].createElement("span", {
+      }, /*#__PURE__*/_react["default"].createElement("i", null)) : null, /*#__PURE__*/_react["default"].createElement("span", {
         className: styles.monthAndYearPickers
       }, _this.state.monthNames[focusedDate.getMonth()], " ", focusedDate.getFullYear()), showMonthArrow ? /*#__PURE__*/_react["default"].createElement("button", {
         type: "button",
-        className: (0, _classnames3["default"])(styles.nextPrevButton, styles.nextButton),
+        className: (0, _classnames["default"])(styles.nextPrevButton, styles.nextButton),
         onClick: function onClick() {
           return changeShownDate(+1, 'monthOffset');
         }
       }, /*#__PURE__*/_react["default"].createElement("i", null)) : null);
     });
 
-    _defineProperty(_assertThisInitialized(_this), "renderDateDisplay", function () {
-      var _this$props3 = _this.props,
-          focusedRange = _this$props3.focusedRange,
-          color = _this$props3.color,
-          ranges = _this$props3.ranges,
-          rangeColors = _this$props3.rangeColors,
-          dateDisplayFormat = _this$props3.dateDisplayFormat,
-          editableDateInputs = _this$props3.editableDateInputs,
-          startDatePlaceholder = _this$props3.startDatePlaceholder,
-          endDatePlaceholder = _this$props3.endDatePlaceholder;
-      var defaultColor = rangeColors[focusedRange[0]] || color;
-      var styles = _this.styles;
-      return /*#__PURE__*/_react["default"].createElement("div", {
-        className: styles.dateDisplayWrapper
-      }, ranges.map(function (range, i) {
-        if (range.showDateDisplay === false || range.disabled && !range.showDateDisplay) return null;
-        return /*#__PURE__*/_react["default"].createElement("div", {
-          className: styles.dateDisplay,
-          key: i,
-          style: {
-            color: range.color || defaultColor
-          }
-        }, /*#__PURE__*/_react["default"].createElement(_DateInput["default"], {
-          className: (0, _classnames3["default"])(styles.dateDisplayItem, _defineProperty({}, styles.dateDisplayItemActive, focusedRange[0] === i && focusedRange[1] === 0)),
-          readOnly: !editableDateInputs,
-          disabled: range.disabled,
-          value: range.startDate,
-          placeholder: startDatePlaceholder,
-          dateOptions: _this.dateOptions,
-          dateDisplayFormat: dateDisplayFormat,
-          onChange: _this.onDragSelectionEnd,
-          onFocus: function onFocus() {
-            return _this.handleRangeFocusChange(i, 0);
-          }
-        }), /*#__PURE__*/_react["default"].createElement(_DateInput["default"], {
-          className: (0, _classnames3["default"])(styles.dateDisplayItem, _defineProperty({}, styles.dateDisplayItemActive, focusedRange[0] === i && focusedRange[1] === 1)),
-          readOnly: !editableDateInputs,
-          disabled: range.disabled,
-          value: range.endDate,
-          placeholder: endDatePlaceholder,
-          dateOptions: _this.dateOptions,
-          dateDisplayFormat: dateDisplayFormat,
-          onChange: _this.onDragSelectionEnd,
-          onFocus: function onFocus() {
-            return _this.handleRangeFocusChange(i, 1);
-          }
-        }));
-      }));
-    });
-
     _defineProperty(_assertThisInitialized(_this), "onDragSelectionStart", function (date) {
-      var _this$props4 = _this.props,
-          onChange = _this$props4.onChange,
-          dragSelectionEnabled = _this$props4.dragSelectionEnabled;
+      var _this$props3 = _this.props,
+          onChange = _this$props3.onChange,
+          dragSelectionEnabled = _this$props3.dragSelectionEnabled;
 
       if (dragSelectionEnabled) {
         _this.setState({
@@ -308,11 +252,11 @@ var Calendar = /*#__PURE__*/function (_PureComponent) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "onDragSelectionEnd", function (date) {
-      var _this$props5 = _this.props,
-          updateRange = _this$props5.updateRange,
-          displayMode = _this$props5.displayMode,
-          onChange = _this$props5.onChange,
-          dragSelectionEnabled = _this$props5.dragSelectionEnabled;
+      var _this$props4 = _this.props,
+          updateRange = _this$props4.updateRange,
+          displayMode = _this$props4.displayMode,
+          onChange = _this$props4.onChange,
+          dragSelectionEnabled = _this$props4.dragSelectionEnabled;
       if (!dragSelectionEnabled) return;
 
       if (displayMode === 'date' || !_this.state.drag.status) {
@@ -363,9 +307,9 @@ var Calendar = /*#__PURE__*/function (_PureComponent) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "estimateMonthSize", function (index, cache) {
-      var _this$props6 = _this.props,
-          direction = _this$props6.direction,
-          minDate = _this$props6.minDate;
+      var _this$props5 = _this.props,
+          direction = _this$props5.direction,
+          minDate = _this$props5.minDate;
       var scrollArea = _this.state.scrollArea;
 
       if (cache) {
@@ -503,26 +447,78 @@ var Calendar = /*#__PURE__*/function (_PureComponent) {
           key: i
         }, (0, _dateFns.format)(day, _this4.props.weekdayDisplayFormat, _this4.dateOptions));
       }));
-    }
+    } // renderDateDisplay = () => {
+    //   const {
+    //     focusedRange,
+    //     color,
+    //     ranges,
+    //     rangeColors,
+    //     dateDisplayFormat,
+    //     editableDateInputs,
+    //     startDatePlaceholder,
+    //     endDatePlaceholder
+    //   } = this.props;
+    //
+    //   const defaultColor = rangeColors[focusedRange[0]] || color;
+    //   const styles = this.styles;
+    //
+    //   return (
+    //     <div className={styles.dateDisplayWrapper}>
+    //       {ranges.map((range, i) => {
+    //         if (range.showDateDisplay === false || (range.disabled && !range.showDateDisplay)) return null;
+    //         return (
+    //           <div className={styles.dateDisplay} key={i} style={{ color: range.color || defaultColor }}>
+    //             <DateInput
+    //               className={classnames(styles.dateDisplayItem, {
+    //                 [styles.dateDisplayItemActive]: focusedRange[0] === i && focusedRange[1] === 0
+    //               })}
+    //               readOnly={!editableDateInputs}
+    //               disabled={range.disabled}
+    //               value={range.startDate}
+    //               placeholder={startDatePlaceholder}
+    //               dateOptions={this.dateOptions}
+    //               dateDisplayFormat={dateDisplayFormat}
+    //               onChange={this.onDragSelectionEnd}
+    //               onFocus={() => this.handleRangeFocusChange(i, 0)}
+    //             />
+    //             <DateInput
+    //               className={classnames(styles.dateDisplayItem, {
+    //                 [styles.dateDisplayItemActive]: focusedRange[0] === i && focusedRange[1] === 1
+    //               })}
+    //               readOnly={!editableDateInputs}
+    //               disabled={range.disabled}
+    //               value={range.endDate}
+    //               placeholder={endDatePlaceholder}
+    //               dateOptions={this.dateOptions}
+    //               dateDisplayFormat={dateDisplayFormat}
+    //               onChange={this.onDragSelectionEnd}
+    //               onFocus={() => this.handleRangeFocusChange(i, 1)}
+    //             />
+    //           </div>
+    //         );
+    //       })}
+    //     </div>
+    //   );
+    // };
+
   }, {
     key: "render",
     value: function render() {
       var _this5 = this;
 
-      var _this$props7 = this.props,
-          showDateDisplay = _this$props7.showDateDisplay,
-          onPreviewChange = _this$props7.onPreviewChange,
-          scroll = _this$props7.scroll,
-          direction = _this$props7.direction,
-          disabledDates = _this$props7.disabledDates,
-          disabledDay = _this$props7.disabledDay,
-          maxDate = _this$props7.maxDate,
-          minDate = _this$props7.minDate,
-          rangeColors = _this$props7.rangeColors,
-          color = _this$props7.color,
-          navigatorRenderer = _this$props7.navigatorRenderer,
-          className = _this$props7.className,
-          preview = _this$props7.preview;
+      var _this$props6 = this.props,
+          onPreviewChange = _this$props6.onPreviewChange,
+          scroll = _this$props6.scroll,
+          direction = _this$props6.direction,
+          disabledDates = _this$props6.disabledDates,
+          disabledDay = _this$props6.disabledDay,
+          maxDate = _this$props6.maxDate,
+          minDate = _this$props6.minDate,
+          rangeColors = _this$props6.rangeColors,
+          color = _this$props6.color,
+          navigatorRenderer = _this$props6.navigatorRenderer,
+          className = _this$props6.className,
+          preview = _this$props6.preview;
       var _this$state = this.state,
           scrollArea = _this$state.scrollArea,
           focusedDate = _this$state.focusedDate;
@@ -534,7 +530,7 @@ var Calendar = /*#__PURE__*/function (_PureComponent) {
         });
       });
       return /*#__PURE__*/_react["default"].createElement("div", {
-        className: (0, _classnames3["default"])(this.styles.calendarWrapper, className),
+        className: (0, _classnames["default"])(this.styles.calendarWrapper, className),
         onMouseUp: function onMouseUp() {
           return _this5.setState({
             drag: {
@@ -551,8 +547,8 @@ var Calendar = /*#__PURE__*/function (_PureComponent) {
             }
           });
         }
-      }, showDateDisplay && this.renderDateDisplay(), monthAndYearRenderer(focusedDate, this.changeShownDate, this.props), scroll.enabled ? /*#__PURE__*/_react["default"].createElement("div", null, isVertical && this.renderWeekdays(this.dateOptions), /*#__PURE__*/_react["default"].createElement("div", {
-        className: (0, _classnames3["default"])(this.styles.infiniteMonths, isVertical ? this.styles.monthsVertical : this.styles.monthsHorizontal),
+      }, monthAndYearRenderer(focusedDate, this.changeShownDate, this.props), scroll.enabled ? /*#__PURE__*/_react["default"].createElement("div", null, isVertical && this.renderWeekdays(this.dateOptions), /*#__PURE__*/_react["default"].createElement("div", {
+        className: (0, _classnames["default"])(this.styles.infiniteMonths, isVertical ? this.styles.monthsVertical : this.styles.monthsHorizontal),
         onMouseLeave: function onMouseLeave() {
           return onPreviewChange && onPreviewChange();
         },
@@ -600,7 +596,7 @@ var Calendar = /*#__PURE__*/function (_PureComponent) {
           }));
         }
       }))) : /*#__PURE__*/_react["default"].createElement("div", {
-        className: (0, _classnames3["default"])(this.styles.months, isVertical ? this.styles.monthsVertical : this.styles.monthsHorizontal)
+        className: (0, _classnames["default"])(this.styles.months, isVertical ? this.styles.monthsVertical : this.styles.monthsHorizontal)
       }, new Array(this.props.months).fill(null).map(function (_, i) {
         var monthStep = (0, _dateFns.addMonths)(_this5.state.focusedDate, i);
         return /*#__PURE__*/_react["default"].createElement(_Month["default"], _extends({}, _this5.props, {
